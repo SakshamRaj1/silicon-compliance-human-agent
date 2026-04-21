@@ -56,8 +56,16 @@ app.post('/api/report', async (req, res) => {
 
 // Fallback — serve frontend
 
-app.get('/:any(.*)', (req, res) => {
-  const path = req.params.any;
+// app.get('/:any(.*)', (req, res) => {
+  // const path = req.params.any;
+  // res.sendFile(path.join(__dirname, 'public', 'index.html'));
+// });
+
+app.get('*', (req, res) => {
+  // Use a different variable name (e.g., requestedPath) 
+  // so you don't overwrite the 'path' module
+  const requestedPath = req.params[0]; 
+  
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
