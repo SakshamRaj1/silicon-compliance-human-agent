@@ -56,7 +56,8 @@ app.post('/api/report', async (req, res) => {
 
 // Fallback — serve frontend
 
-app.get('/:any*', (req, res) => {
+app.get('/:any(.*)', (req, res) => {
+  const path = req.params.any;
   res.sendFile(path.join(__dirname, 'public', 'index.html'));
 });
 
